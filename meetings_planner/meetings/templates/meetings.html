@@ -1,0 +1,44 @@
+<!-- meetings/templates/meetings/room_list.html -->
+
+<!-- Section for Meetings -->
+<div class="meetings-section">
+    <h2>Meetings</h2>
+    <ul>
+        {% for meeting in meetings %}
+        <li>
+            <a href="{% url 'detail' meeting.id %}">{{ meeting.title }}</a>
+            
+            <!-- JavaScript confirmation for immediate delete -->
+            <form action="{% url 'delete_meeting' meeting.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this meeting?');">Delete</button>
+            </form>
+
+            <!-- Link to delete confirmation page -->
+            <a href="{% url 'delete_meeting' meeting.id %}">Confirm Delete</a>
+
+            <a href="{% url 'update_meeting' meeting.id %}">Update</a>
+        </li>
+        {% empty %}
+        <li>No meetings available at the moment.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<hr/>
+
+<!-- Section for Rooms -->
+<!-- <div class="rooms-section">
+    <h2>Rooms</h2>
+    <ul>
+        {% for room in rooms %}
+        <li>
+            <a href="{% url 'room_detail' room.id %}">
+                {{ room.name }}: Room {{ room.room_number }} on floor {{ room.floor }}
+            </a>
+        </li>
+        {% empty %}
+        <li>No rooms available at the moment.</li>
+        {% endfor %}
+    </ul>
+</div> -->

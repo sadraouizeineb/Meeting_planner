@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Update Meeting{% endblock %}
+
+{% block content %}
+<h1>Update Meeting</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}  <!-- Affiche le formulaire -->
+    </table>
+    <button type="submit">Update</button>  <!-- Bouton de soumission -->
+</form>
+
+{% endblock %}
